@@ -8,4 +8,4 @@ for($i = 0; $i -le $numPages; $i++)
     $WebResponse = Invoke-WebRequest "$urlPre$i$urlPost"
     $recipes += $WebResponse.AllElements | Where {$_.TagName -eq 'a' -and $_.outerHTML -like "*recipetitle*"} | select innerText,href
 }
-$recipes | Export-Csv -NoTypeInformation -Path C:\Users\nziehnert\Desktop\Recipes.csv
+$recipes | Export-Csv -NoTypeInformation -Path "C:\Users\$($ENV:username)\Desktop\Recipes.csv"

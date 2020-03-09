@@ -1,4 +1,4 @@
-$recipes = Get-ChildItem -Path "C:\Users\$ENV:USERNAME\Desktop\Recipes\*.xml"
+$recipes = Get-ChildItem -Path "C:\Users\nziehnert\Desktop\Recipes\*.xml"
 $recipesTable = @()
 foreach($r in $recipes){
     [xml]$xml = Get-Content $r.FullName
@@ -55,6 +55,10 @@ foreach($r in $recipes){
         }catch{
             $recipeDetails | Add-Member -MemberType NoteProperty -Name "$($yeast.LABORATORY)-$($yeast.PRODUCT_ID)-$($yeast.FORM)-$($yeast.TYPE)-2" -Value $yeast.AMOUNT
         }
+    }
+    foreach($propertyName in $recipeDetails.PSObject.Properties.Name)
+    {
+        $recipesTable[0] | Add-Member -MemberType NoteProperty -Name $propertyName -Value $null -ErrorAction SilentlyContinue
     }
     $recipesTable += $recipeDetails
 }

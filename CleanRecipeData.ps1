@@ -58,4 +58,4 @@ foreach($r in $recipes){
     }
     $recipesTable += $recipeDetails
 }
-$recipesTable | Export-Csv "C:\Users\$ENV:USERNAME\Desktop\Recipes\AggregateData.csv"
+$recipesTable | Export-Csv "C:\Users\$ENV:USERNAME\Desktop\Recipes\AggregateData.csv" -NoTypeInformation
